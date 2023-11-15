@@ -3,6 +3,7 @@ import { ethers } from "ethers";
 import {
   nftAddress,
   nftMarketplaceAddress,
+  rpcProvider
 } from "../../../config/networkAddress";
 import NFTAbi from "../../../abi/NFT.json";
 import NFTMarketplaceAbi from "../../../abi/NFTMarketplace.json";
@@ -26,7 +27,7 @@ export default function MyItemId() {
 
   const loadNFT = async () => {
     setLoading(true);
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(rpcProvider);
     const nftContract = new ethers.Contract(nftAddress, NFTAbi.abi, provider);
     const nftMarketPlaceContract = new ethers.Contract(
       nftMarketplaceAddress,

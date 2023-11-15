@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ethers } from "ethers";
-import { nftAddress, nftMarketplaceAddress } from "../../../config/networkAddress";
+import { nftAddress, nftMarketplaceAddress, rpcProvider } from "../../../config/networkAddress";
 import NFTAbi from "../../../abi/NFT.json";
 import NFTMarketplaceAbi from "../../../abi/NFTMarketplace.json";
 import axios from "axios";
@@ -20,7 +20,7 @@ export default function ListedNFTItemId() {
 
   const loadNFT = async () => {
     setLoading(true);
-    const provider = new ethers.providers.JsonRpcProvider();
+    const provider = new ethers.providers.JsonRpcProvider(rpcProvider);
     const nftContract = new ethers.Contract(nftAddress, NFTAbi.abi, provider);
     const nftMarketPlaceContract = new ethers.Contract(
       nftMarketplaceAddress,
